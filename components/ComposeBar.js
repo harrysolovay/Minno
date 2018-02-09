@@ -9,7 +9,7 @@ class ComposeBar extends Component {
 
   render() {
     return (
-      <View style={ styles.container }>
+      <View style={[ this.props.style, styles.container ]}>
         <TextInput style={ styles.input }
           multiline={ true }
           placeholder={ 'post somethin\'' }
@@ -28,6 +28,7 @@ class ComposeBar extends Component {
       </View>
     )
   }
+
 }
 
 const styles = StyleSheet.create({
@@ -40,7 +41,6 @@ const styles = StyleSheet.create({
   },
   input : {
     flexGrow : 1,
-    fontSize: 16,
     paddingTop : 14,
     paddingRight : 14,
     paddingBottom : 9,

@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
-export class Left extends Component {
+export class LeftButton extends Component {
   render() {
     return (
-      <TouchableOpacity style={ styles.leftButton }
-        onPress={ this.props.onPress }
-      >
+      <TouchableOpacity style={ styles.leftButton } >
         <Ionicons
           name='ios-arrow-round-back'
           size={ 40 }
@@ -17,13 +15,18 @@ export class Left extends Component {
   }
 }
 
-export class Search extends Component {
+export class SearchButton extends Component {
   render() {
     return (
-      <Image style={ styles.searchIcon }
-        resizeMode='contain'
-        source={ require('../assets/images/search.png') }
-      />
+      <TouchableOpacity
+        activeOpacity={ .8 }
+        onPress={ this.props.onPress }
+      >
+        <Image style={ styles.searchIcon }
+          resizeMode='contain'
+          source={ require('../assets/images/search.png') }
+        />
+      </TouchableOpacity>
     )
   }
 }

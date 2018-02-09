@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { StyleSheet, KeyboardAvoidingView } from 'react-native'
-import { getStatusBarHeight } from 'react-native-status-bar-height'
+import { StyleSheet, KeyboardAvoidingView, Platform } from 'react-native'
+import { isIphoneX } from 'react-native-iphone-x-helper'
 
-const HEADER_HEIGHT = 45 + getStatusBarHeight()
+const STATUS_BAR_HEIGHT = isIphoneX() ? 44 : Platform.OS == 'ios' ? 20 : 0
+const HEADER_HEIGHT = 65
+const KEYBOARD_AVOIDING_VIEW_PADDING_TOP = STATUS_BAR_HEIGHT + HEADER_HEIGHT
 
 class KeyboardCorrectlyAvoidingView extends Component {
   render() {
@@ -17,7 +19,7 @@ const styles = StyleSheet.create({
     flexDirection : 'column',
     flex : 1,
     justifyContent : 'center',
-    paddingTop : HEADER_HEIGHT
+    paddingTop : KEYBOARD_AVOIDING_VIEW_PADDING_TOP
   }
 })
 

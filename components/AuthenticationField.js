@@ -21,7 +21,7 @@ export default class AuthenticationField extends Component {
         />
         { this.props.hasNextButton &&
           <TouchableOpacity style={ styles.nextButton }
-            activeOpacity={ .8 }
+            activeOpacity={ .5 }
             onPress={ this.props.next }
           >
             <Ionicons

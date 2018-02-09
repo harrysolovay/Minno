@@ -1,6 +1,6 @@
 import React from 'react'
 import { StackNavigator, NavigationActions } from 'react-navigation'
-import { Left, Search } from '../components/Header'
+import { LeftButton, SearchButton } from '../components/Header'
 
 import LogIn from '../screens/auth/LogIn'
 import WithPhone from '../screens/auth/WithPhone'
@@ -8,6 +8,12 @@ import VerifyPhone from '../screens/auth/VerifyPhone'
 import PickAPassword from '../screens/auth/PickAPassword'
 import PickAHandle from '../screens/auth/PickAHandle'
 import RootTabs from '../navigation/Root'
+import Search from '../screens/search/Search'
+
+const HEADER_STYLE = {
+  borderColor : '#cccccc',
+  backgroundColor : '#eeeeee'
+}
 
 const AuthStack = StackNavigator(
   {
@@ -43,22 +49,25 @@ const AuthStack = StackNavigator(
     },
     rootTabs : {
       screen : RootTabs,
+      navigationOptions : ({ navigation }) => ({
+        headerTitle : () => {
+          return <SearchButton onPress={ () => navigation.navigate('search') } />
+        },
+        headerStyle : HEADER_STYLE
+      })
+    },
+    search : {
+      screen : Search,
       navigationOptions : {
-        headerTitle : <Search />,
-        headerStyle : {
-          borderColor : '#cccccc',
-          backgroundColor : '#eeeeee'
-        }
-      }
+        headerTitle : <SearchButton />
+      },
+      headerStyle : HEADER_STYLE
     }
   }, {
     navigationOptions : ({ navigation }) => ({
-      headerStyle : {
-        height : 45,
-        backgroundColor : '#fff'
-      },
+      headerStyle : HEADER_STYLE,
       headerLeft : () => {
-        return <Left onPress={ () => navigation.dispatch(NavigationActions.back()) } />
+        return <LeftButton onPress={ () => navigation.dispatch(NavigationActions.back()) } />
       },
       headerTitleStyle : {
         fontSize : 18,

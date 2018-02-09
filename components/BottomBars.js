@@ -10,7 +10,8 @@ class BottomBars extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showTabBar : true
+      showTabBar : true,
+      compositionBarVericalOffset : 0
     }
   }
 
@@ -19,8 +20,9 @@ class BottomBars extends Component {
       <View>
         <KeyboardAccessoryView
           alwaysVisible={ true }
+          bumperHeight={ 100 }
         >
-          <ComposeBar
+          <ComposeBar style={{ position : 'absolute', bottom : this.state.compositionBarVericalOffset }}
             onCompositionInputFocus={ this.onCompositionInputFocus }
             onCompositionInputBlur={ this.onCompositionInputBlur }
             onCompositionInputChange={ this.onCompositionInputChange }
@@ -28,13 +30,31 @@ class BottomBars extends Component {
         </KeyboardAccessoryView>
         {
           this.state.showTabBar &&
-            <TabBar
+            <TabBar ref={ (ref) => { this.tabBarRef = ref } }
               goToPage={ this.props.goToPage }
               activeTab={ this.props.activeTab }
             />
         }
       </View>
     )
+  }
+
+  componentDidMount() {
+    this.props.scrollValue.addListener((e) => {
+
+      let y
+
+      if(e.value <= 1)
+        y = 0
+
+      if(e.value > 1)
+        y = -(46 - ( 46 * (2 - e.value)))
+
+      this.setState({
+        compositionBarVericalOffset : y
+      })
+
+    })
   }
 
   onCompositionInputFocus = () => {
@@ -52,9 +72,5 @@ class BottomBars extends Component {
   }
 
 }
-
-const styles = StyleSheet.create({
-
-})
 
 export default BottomBars
