@@ -47,16 +47,16 @@ const styles = StyleSheet.create({
     justifyContent : 'center'
   },
   input : {
-    paddingTop : 16,
+    paddingTop : 15,
     paddingRight : 15,
-    paddingBottom : 15,
+    paddingBottom : 14,
     paddingLeft : 15,
     fontFamily : 'FuturaLTBook',
     fontSize : 16,
     flexGrow : 1
   },
   nextButton : {
-    paddingTop : 6,
+    paddingTop : 5,
     paddingRight : 15
   }
 })

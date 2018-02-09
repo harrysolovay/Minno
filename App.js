@@ -40,7 +40,9 @@ class App extends Component {
   async load() {
     return Promise.all([
       Font.loadAsync({
+        HelveticaNeueLight : require('./assets/fonts/HelveticaNeue-Light.ttf'),
         HelveticaNeueRegular : require('./assets/fonts/HelveticaNeue-Regular.ttf'),
+        HelveticaNeueBold : require('./assets/fonts/HelveticaNeue-Bold.ttf'),
         FuturaLTBook : require('./assets/fonts/FuturaLT-Book.ttf')
       })
     ])

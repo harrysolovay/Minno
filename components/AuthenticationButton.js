@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, TouchableOpacity, Dimensions } from 'react-native'
-import { RegularText } from './StyledText'
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native'
 
 class AuthenticationButton extends Component {
   render() {
@@ -9,9 +8,9 @@ class AuthenticationButton extends Component {
         onPress={ this.props.onPress }
         activeOpacity={ .8 }
       >
-        <RegularText style={[ this.props.textStyle, styles.text ]}>
+        <Text style={[ this.props.textStyle, styles.text ]}>
           { this.props.text }
-        </RegularText>
+        </Text>
       </TouchableOpacity>
     )
   }
@@ -20,13 +19,14 @@ class AuthenticationButton extends Component {
 const styles = StyleSheet.create({
   button : {
     marginTop : 7.5,
-    paddingTop : 19,
-    paddingBottom : 12,
+    paddingTop : 18,
+    paddingBottom : 10,
     alignItems : 'center',
     borderRadius : 5
   },
   text : {
-    fontSize : 16,
+    fontSize : 18,
+    fontFamily : 'HelveticaNeueLight'
   },
 })
 

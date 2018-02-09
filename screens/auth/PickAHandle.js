@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import KeyboardCorrectlyAvoidingView from '../../components/KeyboardCorrectlyAvoidingView'
 import AuthenticationField from '../../components/AuthenticationField'
 
 class PickAHandle extends Component {
@@ -11,7 +12,7 @@ class PickAHandle extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={ styles.container }
+      <KeyboardCorrectlyAvoidingView
         behavior='position'
       >
         <AuthenticationField
@@ -26,7 +27,7 @@ class PickAHandle extends Component {
           next={ this.submitHandle }
           hasNextButton
         />
-      </KeyboardAvoidingView>
+      </KeyboardCorrectlyAvoidingView>
     )
   }
 
@@ -41,11 +42,6 @@ class PickAHandle extends Component {
 }
 
 const styles = StyleSheet.create({
-  container : {
-    flexDirection : 'column',
-    flex : 1,
-    justifyContent : 'center'
-  },
   handleField : {
     marginTop : 7.5
   }

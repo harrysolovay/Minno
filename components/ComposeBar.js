@@ -41,20 +41,23 @@ const styles = StyleSheet.create({
   input : {
     flexGrow : 1,
     fontSize: 16,
-    paddingTop : 12,
+    paddingTop : 14,
     paddingRight : 14,
-    paddingBottom : 13,
-    paddingLeft : 14
+    paddingBottom : 9,
+    paddingLeft : 14,
+    fontFamily : 'HelveticaNeueRegular',
+    fontSize : 18
   },
   button : {
-    paddingTop : 11,
+    paddingTop : 14,
     paddingRight : 14,
-    paddingBottom : 14,
+    paddingBottom : 9,
     paddingLeft : 14
   },
   buttonText : {
-    fontSize : 16,
-    color : '#4a90e2'
+    fontSize : 18,
+    color : '#4a90e2',
+    fontFamily : 'HelveticaNeueRegular',
   }
 })
 

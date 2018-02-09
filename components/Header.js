@@ -20,15 +20,10 @@ export class Left extends Component {
 export class Search extends Component {
   render() {
     return (
-      <TouchableOpacity style={ styles.searchButton }
-        onPress={ this.props.onPress }
-        activeOpacity={ .5 }
-      >
-        <Image style={ styles.searchIcon }
-          resizeMode='contain'
-          source={ require('../assets/images/search.png') }
-        />
-      </TouchableOpacity>
+      <Image style={ styles.searchIcon }
+        resizeMode='contain'
+        source={ require('../assets/images/search.png') }
+      />
     )
   }
 }
@@ -36,9 +31,6 @@ export class Search extends Component {
 const styles = StyleSheet.create({
   leftButton : {
     marginLeft : 15
-  },
-  searchButton : {
-
   },
   searchIcon : {
     width : 20,

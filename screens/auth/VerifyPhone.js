@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import AuthenticationField from '../../components/AuthenticationField'
+import KeyboardCorrectlyAvoidingView from '../../components/KeyboardCorrectlyAvoidingView'
+import CodeInput from 'react-native-code-input'
 
 class VerifyPhone extends Component {
 
@@ -11,31 +12,66 @@ class VerifyPhone extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={ styles.container }
+      <KeyboardCorrectlyAvoidingView
         behavior='position'
       >
-        <AuthenticationField
-          placeholder='VERIFICATION CODE'
-          keyboardType='phone-pad'
-          next={ this.verifyPhone }
-          autoFocus
-          hasNextButton
-        />
-      </KeyboardAvoidingView>
+        <View style={ styles.inputGroup }>
+          <CodeInput
+            ref={ (ref) => { this.input = ref } }
+            activeColor='#4a90e2'
+            inactiveColor='#000'
+            autoFocus={ true }
+            keyboardType='numeric'
+            inputPosition='center'
+            returnKeyType='next'
+            space={ 7.5 }
+            size={ 52 }
+            codeLength={ 4 }
+            onFulfill={ (code) => this.verifyPhone(code) }
+            codeInputStyle={ styles.input }
+          />
+        </View>
+        <TouchableOpacity style={ styles.resendCodeButton }
+          onPress={ this.resendCode }
+          activeOpacity={ .8 }
+        >
+          <Text style={ styles.resendCodeButtonText }>
+            resend verification code
+          </Text>
+        </TouchableOpacity>
+      </KeyboardCorrectlyAvoidingView>
     )
   }
 
-  verifyPhone = () => {
+  verifyPhone = (code) => {
     this.props.navigation.navigate('pickAHandle')
+  }
+
+  resendCode = () => {
+    console.log('resending verification code')
   }
 
 }
 
 const styles = StyleSheet.create({
-  container : {
-    flexDirection : 'column',
-    flex : 1,
-    justifyContent : 'center'
+  inputGroup : {
+    marginTop : 21,
+    height : 52,
+  },
+  input : {
+    top : -21,
+    borderWidth : 1,
+    fontFamily : 'FuturaLTBook',
+    fontSize : 18
+  },
+  resendCodeButton : {
+    marginTop : 15,
+    alignItems : 'center'
+  },
+  resendCodeButtonText : {
+    color : '#4a90e2',
+    fontFamily : 'HelveticaNeueLight',
+    fontSize : 20
   }
 })
 

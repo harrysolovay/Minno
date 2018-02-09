@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
-import { TitleText, RegularText } from '../../components/StyledText'
 import AuthenticationButton from '../../components/AuthenticationButton'
 
 class Login extends Component {
@@ -19,8 +18,8 @@ class Login extends Component {
             resizeMode='contain'
             source={ require('../../assets/images/logo.png') }
           />
-          <TitleText style={ styles.title }>MINNO</TitleText>
-          <RegularText style={ styles.subTitle }>now you see me, now you don&#x27;t</RegularText>
+          <Text style={ styles.title }>MINNO</Text>
+          <Text style={ styles.subTitle }>now you see me, now you don&#x27;t</Text>
         </View>
         <View style={ styles.AuthenticationOptions }>
           <AuthenticationButton
@@ -89,13 +88,15 @@ const styles = StyleSheet.create({
   },
   title : {
     fontSize : 30,
-    marginTop : 15
+    marginTop : 15,
+    fontFamily : 'FuturaLTBook'
   },
   subTitle : {
     fontSize : 22,
     textAlign : 'center',
     width : 200,
-    marginTop : 10
+    marginTop : 10,
+    fontFamily : 'HelveticaNeueLight'
   },
   AuthenticationOptions : {
     flexDirection : 'column',

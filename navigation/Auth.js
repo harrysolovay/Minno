@@ -1,7 +1,6 @@
 import React from 'react'
 import { StackNavigator, NavigationActions } from 'react-navigation'
 import { Left, Search } from '../components/Header'
-import { getStatusBarHeight } from 'react-native-status-bar-height'
 
 import LogIn from '../screens/auth/LogIn'
 import WithPhone from '../screens/auth/WithPhone'

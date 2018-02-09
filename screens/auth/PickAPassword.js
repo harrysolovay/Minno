@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { NavigationActions } from 'react-navigation'
+import KeyboardCorrectlyAvoidingView from '../../components/KeyboardCorrectlyAvoidingView'
 import AuthenticationField from '../../components/AuthenticationField'
 
 class PickAPassword extends Component {
@@ -12,7 +13,7 @@ class PickAPassword extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={ styles.container }
+      <KeyboardCorrectlyAvoidingView
         behavior='position'
       >
         <AuthenticationField
@@ -29,7 +30,7 @@ class PickAPassword extends Component {
           next={ this.completeRegistration }
           hasNextButton
         />
-      </KeyboardAvoidingView>
+      </KeyboardCorrectlyAvoidingView>
     )
   }
 
@@ -53,11 +54,6 @@ class PickAPassword extends Component {
 }
 
 const styles = StyleSheet.create({
-  container : {
-    flexDirection : 'column',
-    flex : 1,
-    justifyContent : 'center'
-  },
   handleField : {
     marginTop : 7.5
   }

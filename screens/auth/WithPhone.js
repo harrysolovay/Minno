@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import KeyboardCorrectlyAvoidingView from '../../components/KeyboardCorrectlyAvoidingView'
 import AuthenticationField from '../../components/AuthenticationField'
 
 class WithPhone extends Component {
@@ -11,7 +12,7 @@ class WithPhone extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={ styles.container }
+      <KeyboardCorrectlyAvoidingView
         behavior='position'
       >
         <AuthenticationField
@@ -21,7 +22,7 @@ class WithPhone extends Component {
           autoFocus
           hasNextButton
         />
-      </KeyboardAvoidingView>
+      </KeyboardCorrectlyAvoidingView>
     )
   }
 
@@ -30,13 +31,5 @@ class WithPhone extends Component {
   }
 
 }
-
-const styles = StyleSheet.create({
-  container : {
-    flexDirection : 'column',
-    flex : 1,
-    justifyContent : 'center'
-  }
-})
 
 export default WithPhone
