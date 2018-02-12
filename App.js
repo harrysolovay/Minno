@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import { AppLoading, Font } from 'expo'
-
-import AuthStack from './navigation/Auth'
-import RootTabs from './navigation/Root'
+import { Provider } from 'mobx-react'
+import stores from './stores'
+import Navigator from './Navigator'
 
 class App extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      isLoaded : false,
-      isAuthenticated : false
+      isLoaded : false
     }
   }
 
@@ -30,10 +29,11 @@ class App extends Component {
       )
     }
 
-    if(this.state.isAuthenticated)
-      return <RootTabs />
-    else
-      return <AuthStack />
+    return (
+      <Provider { ...stores }>
+        <Navigator />
+      </Provider>
+    )
 
   }
 

@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import { inject, observer } from 'mobx-react'
 import KeyboardCorrectlyAvoidingView from '../../components/KeyboardCorrectlyAvoidingView'
 import AuthenticationField from '../../components/AuthenticationField'
 
+@inject('userStore')
+@observer
 class PickAHandle extends Component {
 
   constructor(props) {
@@ -15,16 +18,16 @@ class PickAHandle extends Component {
       <KeyboardCorrectlyAvoidingView
         behavior='position'
       >
-        <AuthenticationField
-          placeholder='YOUR NAME'
+        <AuthenticationField ref={ (ref) => { this.nameFieldRef = ref } }
+          placeholder='MORTY THE MINNO'
           keyboardType='default'
           next={ this.focusNextField }
           autoFocus
         />
         <AuthenticationField ref={ (ref) => { this.handleFieldRef = ref } } fieldStyle={ styles.handleField }
-          placeholder='A HANDLE'
+          placeholder='CATFISH'
           keyboardType='default'
-          next={ this.submitHandle }
+          next={ this.saveNameAndHandle }
           hasNextButton
         />
       </KeyboardCorrectlyAvoidingView>
@@ -35,8 +38,14 @@ class PickAHandle extends Component {
     this.handleFieldRef.inputRef.focus()
   }
 
-  submitHandle = () => {
-    this.props.navigation.navigate('pickAPassword')
+  saveNameAndHandle = () => {
+    Promise.all([
+      this.props.userStore.saveNameAndHandle(
+        this.nameFieldRef.getValue(),
+        this.handleFieldRef.getValue()
+      ),
+      this.props.userStore.saveAsBeingNoLongerNew()
+    ]).then(() => this.props.navigation.navigate('root'))
   }
 
 }

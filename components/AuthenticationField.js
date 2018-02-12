@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native'
+
+import { StyleSheet, Text, View, TextInput } from 'react-native'
+import Button from './Button'
 import { Ionicons } from '@expo/vector-icons'
 
 export default class AuthenticationField extends Component {
 
   constructor(props) {
     super(props)
+    state = {
+      value : props.value ? props.value : ''
+    }
   }
 
   render() {
@@ -17,11 +22,12 @@ export default class AuthenticationField extends Component {
           autoFocus={ this.props.autoFocus }
           secureTextEntry={ this.props.secureTextEntry }
           returnKeyType={ 'next' }
+          onChangeText={ (text) => this.setState({ value : text }) }
           onSubmitEditing={ this.props.next }
+          value={ this.props.value }
         />
         { this.props.hasNextButton &&
-          <TouchableOpacity style={ styles.nextButton }
-            activeOpacity={ .5 }
+          <Button style={ styles.nextButton }
             onPress={ this.props.next }
           >
             <Ionicons
@@ -29,10 +35,14 @@ export default class AuthenticationField extends Component {
               size={ 40 }
               color='#4a90e2'
             />
-          </TouchableOpacity>
+          </Button>
         }
       </View>
     )
+  }
+
+  getValue() {
+    return this.state.value
   }
 
 }

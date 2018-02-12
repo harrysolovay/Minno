@@ -1,6 +1,9 @@
 {
   "expo": {
     "sdkVersion" : "25.0.0",
-    "orientation" : "portrait"
+    "orientation" : "portrait",
+    facebookScheme : "fb216348378931084",
+    facebookAppId : "216348378931084",
+    facebookDisplayName : "Minno"
   }
 }

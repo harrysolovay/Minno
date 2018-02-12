@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import { NavigationActions } from 'react-navigation'
+import { inject, observer } from 'mobx-react'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
-import AuthenticationButton from '../../components/AuthenticationButton'
+import { NavigationActions } from 'react-navigation'
+import LogInButton from '../../components/LogInButton'
+import * as firebase from 'firebase'
+import 'firebase/firestore'
 
+@inject('userStore')
+@observer
 class Login extends Component {
 
   constructor(props) {
     super(props)
+    if(props.userStore.isNewUser)
+      props.navigation.navigate('pickAHandle')
   }
 
   render() {
@@ -22,19 +29,19 @@ class Login extends Component {
           <Text style={ styles.subTitle }>now you see me, now you don&#x27;t</Text>
         </View>
         <View style={ styles.AuthenticationOptions }>
-          <AuthenticationButton
+          <LogInButton
             buttonStyle={{ backgroundColor : '#3b5998' }}
             textStyle={{ color : '#fff' }}
             text={ 'with Facebook' }
             onPress={ this.logInWithFacebook }
           />
-          <AuthenticationButton
+          <LogInButton
             buttonStyle={{ backgroundColor : '#000' }}
             textStyle={{ color : '#fff' }}
             text={ 'with phone' }
             onPress={ this.logInWithPhone }
           />
-          <AuthenticationButton
+          <LogInButton
             buttonStyle={{ backgroundColor : '#eee' }}
             textStyle={{ color : '#000' }}
             text={ 'continue as guest' }
@@ -46,24 +53,18 @@ class Login extends Component {
   }
 
   logInWithFacebook = () => {
-    this.props.navigation.navigate('withPhone')
+    this.props.userStore.logInWithFacebook().then(() => {
+      this.props.navigation.navigate('pickAHandle')
+    })
   }
 
   logInWithPhone = () => {
-    this.props.navigation.navigate('withPhone')
+    // this.props.navigation.navigate('withPhone')
+    this.props.userStore.logOut()
   }
 
   continueAsGuest = () => {
-    this.props.navigation.dispatch(
-      NavigationActions.reset({
-        index : 0,
-        actions : [
-          NavigationActions.navigate({
-            routeName : 'rootTabs'
-          })
-        ]
-      })
-    )
+    this.props.userStore.logInAsGuest()
   }
 
 }

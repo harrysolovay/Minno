@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
+import Button from './Button'
 
-class AuthenticationButton extends Component {
+class LogInButton extends Component {
   render() {
     return (
-      <TouchableOpacity style={[ this.props.buttonStyle, styles.button ]}
+      <Button style={[ this.props.buttonStyle, styles.button ]}
         onPress={ this.props.onPress }
-        activeOpacity={ .8 }
       >
         <Text style={[ this.props.textStyle, styles.text ]}>
           { this.props.text }
         </Text>
-      </TouchableOpacity>
+      </Button>
     )
   }
 }
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default AuthenticationButton
+export default LogInButton

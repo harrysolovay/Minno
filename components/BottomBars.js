@@ -23,6 +23,7 @@ class BottomBars extends Component {
           bumperHeight={ 100 }
         >
           <ComposeBar style={{ position : 'absolute', bottom : this.state.compositionBarVericalOffset }}
+            activeTab={ this.props.activeTab }
             onCompositionInputFocus={ this.onCompositionInputFocus }
             onCompositionInputBlur={ this.onCompositionInputBlur }
             onCompositionInputChange={ this.onCompositionInputChange }

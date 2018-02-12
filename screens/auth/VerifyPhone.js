@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import KeyboardCorrectlyAvoidingView from '../../components/KeyboardCorrectlyAvoidingView'
 import CodeInput from 'react-native-code-input'
+import Button from '../../components/Button'
 
 class VerifyPhone extends Component {
 
@@ -31,14 +32,13 @@ class VerifyPhone extends Component {
             codeInputStyle={ styles.input }
           />
         </View>
-        <TouchableOpacity style={ styles.resendCodeButton }
+        <Button style={ styles.resendCodeButton }
           onPress={ this.resendCode }
-          activeOpacity={ .8 }
         >
           <Text style={ styles.resendCodeButtonText }>
             resend verification code
           </Text>
-        </TouchableOpacity>
+        </Button>
       </KeyboardCorrectlyAvoidingView>
     )
   }

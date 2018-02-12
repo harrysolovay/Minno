@@ -44,7 +44,7 @@ class PickAPassword extends Component {
         index : 0,
         actions : [
           NavigationActions.navigate({
-            routeName : 'rootTabs'
+            routeName : 'root'
           })
         ]
       })

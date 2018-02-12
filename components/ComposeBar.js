@@ -12,7 +12,7 @@ class ComposeBar extends Component {
       <View style={[ this.props.style, styles.container ]}>
         <TextInput style={ styles.input }
           multiline={ true }
-          placeholder={ 'post somethin\'' }
+          placeholder={ this.props.activeTab == 0 ? 'compose message' : 'post somethin\'' }
           onFocus={ this.props.onCompositionInputFocus }
           onChange={ this.props.onCompositionInputChange }
           onBlur={ this.props.onCompositionInputBlur }
@@ -22,7 +22,7 @@ class ComposeBar extends Component {
           onPress={ () => { console.log('sent or submitted') } }
         >
           <Text style={ styles.buttonText }>
-            post
+            { this.props.activeTab == 0 ? 'send' : 'post' }
           </Text>
         </TouchableOpacity>
       </View>
