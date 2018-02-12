@@ -25,7 +25,7 @@ export class LeftButton extends Component {
 export class SearchHeader extends Component {
   render() {
     return (
-      <Button style={ styles.searchHeaderContainer }
+      <Button style={[ { top : this.props.offset }, styles.searchHeaderContainer ]}
         onPress={ this.props.onPress }
       >
         <Image style={ styles.searchIcon }
@@ -37,11 +37,21 @@ export class SearchHeader extends Component {
   }
 }
 
+export class SearchHeaderGhost extends Component {
+  render() {
+    return (
+      <View style={ styles.searchHeaderGhost } />
+    )
+  }
+}
+
 const styles = StyleSheet.create({
   leftButton : {
     marginLeft : 15
   },
   searchHeaderContainer : {
+    position : 'absolute',
+    right : 0, left : 0, zIndex : 1,
     borderColor : '#cccccc',
     borderBottomWidth : 1,
     backgroundColor : '#eeeeee',
@@ -58,5 +68,15 @@ const styles = StyleSheet.create({
     width : 20,
     height : 20,
     marginBottom : 10
+  },
+  searchHeaderGhost : {
+    borderColor : '#cccccc',
+    borderBottomWidth : 1,
+    backgroundColor : '#eeeeee',
+    ...ifIphoneX({
+      height : 89
+    }, {
+      height : 65
+    })
   }
 })

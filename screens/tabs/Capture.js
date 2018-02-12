@@ -43,13 +43,7 @@ class Capture extends Component {
 
               <Button style={ styles.captureButton }
                 onPress={ this.takePicture }
-              >
-                <Ionicons
-                  name='ios-aperture-outline'
-                  size={ 80 }
-                  color='#fff'
-                />
-              </Button>
+              />
 
               <Button style={ styles.flipButton }
                 onPress={ this.flip }
@@ -119,7 +113,12 @@ const styles = StyleSheet.create({
 
   },
   captureButton : {
-
+    width : 80,
+    height : 80,
+    borderRadius : 40,
+    borderColor : '#fff',
+    borderWidth : 1,
+    marginBottom : 20
   },
   flipButton : {
 

@@ -54,7 +54,8 @@ class Login extends Component {
 
   logInWithFacebook = () => {
     this.props.userStore.logInWithFacebook().then(() => {
-      this.props.navigation.navigate('pickAHandle')
+      if(this.props.userStore.user)
+        this.props.navigation.navigate('pickAHandle')
     })
   }
 

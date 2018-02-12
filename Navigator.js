@@ -1,19 +1,11 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
 import { inject, observer } from 'mobx-react'
 
 import LoadingUser from './screens/auth/LoadingUser'
-
-import ScrollableTabView from 'react-native-scrollable-tab-view'
-import BottomBars from './components/BottomBars'
-
-import Chat from './screens/tabs/Posts'
-import Posts from './screens/tabs/Posts'
-import Capture from './screens/tabs/Capture'
-import Account from './screens/tabs/Account'
+import Tabs from './screens/Tabs'
 
 import { StackNavigator, NavigationActions } from 'react-navigation'
-import { LeftButton, SearchHeader } from './components/Header'
+import { LeftButton } from './components/Header'
 
 import LogIn from './screens/auth/LogIn'
 import WithPhone from './screens/auth/WithPhone'
@@ -21,56 +13,7 @@ import VerifyPhone from './screens/auth/VerifyPhone'
 import PickAPassword from './screens/auth/PickAPassword'
 import PickAHandle from './screens/auth/PickAHandle'
 
-import Search from './screens/search/Search'
-
-
-
-class Tabs extends Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      searchOpen : false
-    }
-  }
-
-  render() {
-    return (
-      <View style={{ flex : 1 }}>
-        <SearchHeader onPress={ this.openSearch } />
-        <ScrollableTabView
-          initialPage={ 1 }
-          tabBarPosition={ 'bottom' }
-          renderTabBar={ () => <BottomBars /> }
-        >
-          <Chat />
-          <Posts />
-          <Capture />
-          <Account />
-        </ScrollableTabView>
-        <Search
-          isOpen={ this.state.searchOpen }
-          close={ this.closeSearch }
-        />
-      </View>
-    )
-  }
-
-  openSearch = () => {
-    this.setState({
-      searchOpen : true
-    })
-  }
-
-  closeSearch = () => {
-    this.setState({
-      searchOpen : false
-    })
-  }
-
-}
-
-
+import { HEADER_HEIGHT } from './constants/Layout'
 
 const HEADER_STYLE = {
   borderColor : '#cccccc',

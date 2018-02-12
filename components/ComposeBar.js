@@ -9,7 +9,7 @@ class ComposeBar extends Component {
 
   render() {
     return (
-      <View style={[ this.props.style, styles.container ]}>
+      <View style={[ this.props.style, { position : 'absolute' }, styles.container ]}>
         <TextInput style={ styles.input }
           multiline={ true }
           placeholder={ this.props.activeTab == 0 ? 'compose message' : 'post somethin\'' }

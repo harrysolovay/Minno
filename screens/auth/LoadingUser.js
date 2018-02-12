@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, Image } from 'react-native'
 
 class LoadingUser extends Component {
-
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <View style={ styles.container }>
-        <Text>Loading User</Text>
+        <Image style={ styles.logo }
+          resizeMode='contain'
+          source={ require('../../assets/images/logo.png') }
+        />
+        <Text style={ styles.text }>loading...</Text>
       </View>
     )
   }
-
 }
 
 const styles = StyleSheet.create({
@@ -23,7 +21,16 @@ const styles = StyleSheet.create({
     alignItems : 'center',
     justifyContent : 'center',
     backgroundColor : '#fff'
-  }
+  },
+  logo : {
+    width : 120,
+    height : 120,
+  },
+  text : {
+    fontSize : 25,
+    marginTop : 15,
+    fontFamily : 'HelveticaNeueLight'
+  },
 })
 
 export default LoadingUser

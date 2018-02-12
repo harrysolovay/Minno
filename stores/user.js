@@ -17,6 +17,7 @@ class UserStore {
 
   @observable user = null
   @observable isNewUser = true
+  @observable launchToCapture = false
   @observable accessToken
   @observable userRef
 
@@ -30,8 +31,11 @@ class UserStore {
         // get firestore user data snapshot
         this.userRef.get().then((snapshot) => {
           if(snapshot.exists) {
+            let userData = snapshot.data()
             // store whether user has completed registration
-            this.isNewUser = snapshot.data().isNewUser
+            this.isNewUser = userData.isNewUser
+            // store whether should launch to capture screens
+            this.launchToCapture = userData.launchToCapture
             // if user already exists, update data
             this.userRef.update({
               facebookId : user.providerData[0].uid
@@ -42,7 +46,8 @@ class UserStore {
             // if user doesn't exist, set data
             this.userRef.set({
               facebookId : user.providerData[0].uid,
-              isNewUser : true
+              isNewUser : true,
+              launchToCapture : false
             }).then(() => {
               this.loaded = true
             })
@@ -72,7 +77,7 @@ class UserStore {
           console.error('failed to use Facebook access token to log in with firebase : ', error)
         })
     } else {
-      console.error('failed to retrieve Facebook access token')
+      console.log('failed to retrieve Facebook access token... user potentially quite')
     }
 
   }

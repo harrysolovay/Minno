@@ -10,8 +10,7 @@ class BottomBars extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showTabBar : true,
-      compositionBarVericalOffset : 0
+      showTabBar : true
     }
   }
 
@@ -22,7 +21,7 @@ class BottomBars extends Component {
           alwaysVisible={ true }
           bumperHeight={ 100 }
         >
-          <ComposeBar style={{ position : 'absolute', bottom : this.state.compositionBarVericalOffset }}
+          <ComposeBar style={{ bottom : this.props.compositionBarOffset }}
             activeTab={ this.props.activeTab }
             onCompositionInputFocus={ this.onCompositionInputFocus }
             onCompositionInputBlur={ this.onCompositionInputBlur }
@@ -37,24 +36,6 @@ class BottomBars extends Component {
         }
       </View>
     )
-  }
-
-  componentDidMount() {
-    this.props.scrollValue.addListener((e) => {
-
-      let y
-
-      if(e.value <= 1)
-        y = 0
-
-      if(e.value > 1)
-        y = -(46 - ( 46 * (2 - e.value)))
-
-      this.setState({
-        compositionBarVericalOffset : y
-      })
-
-    })
   }
 
   onCompositionInputFocus = () => {
