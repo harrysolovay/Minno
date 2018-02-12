@@ -23,8 +23,6 @@ class UserStore {
   constructor() {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
-        // console.log(user)
-
         // save firebase user data
         this.user = user
         // save firestore user ref
@@ -52,6 +50,8 @@ class UserStore {
         })
       } else {
         this.user = this.accessToken = this.userRef = null
+        this.isNewUser = true
+        this.loaded = true
       }
     })
   }

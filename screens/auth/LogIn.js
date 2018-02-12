@@ -13,7 +13,7 @@ class Login extends Component {
 
   constructor(props) {
     super(props)
-    if(props.userStore.isNewUser)
+    if(props.userStore.user !== null && props.userStore.isNewUser)
       props.navigation.navigate('pickAHandle')
   }
 
