@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { StyleSheet, Modal, View, TextInput, Image, Text, TouchableOpacity } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
 import Button from '../../components/Button'
 
