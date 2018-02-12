@@ -1,32 +1,56 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, TextInput, Image, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, Modal, View, TextInput, Image, Text, TouchableOpacity } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
+import Button from '../../components/Button'
 
 class Search extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      query : ''
+    }
   }
 
   render() {
     return (
-      <View style={ styles.container }>
+      <Modal style={ styles.container }
+        visible={ this.props.isOpen }
+        animationType='slide'
+        onRequestClose={ this.props.close }
+      >
         <View style={ styles.searchBar }>
           <Image style={ styles.searchIcon }
             resizeMode='contain'
             source={ require('../../assets/images/search.png') }
           />
-          <TextInput style={ styles.input }
+          <TextInput ref={ (ref) => this.searchInput = ref } style={ styles.input }
+            onChangeText={ (text) => this.setState({ query : text }) }
             placeholder='search'
             autoFocus
           />
-          <TouchableOpacity style={ styles.clearButton }
-            activeOpacity={ .5 }
+          <Button style={ styles.clearButton }
+            onPress={ this.state.query === '' ? this.props.close : this.clear }
           >
-            <Text style={ styles.clearButtonText }>clear</Text>
-          </TouchableOpacity>
+            <Text style={ styles.clearButtonText }>
+              { this.state.query === '' ? 'close' : 'clear' }
+            </Text>
+          </Button>
         </View>
-      </View>
+        <View style={ styles.results }>
+          { this.state.query === ''
+            ? <Text>suggestions</Text>
+            : <Text>results</Text>
+          }
+        </View>
+      </Modal>
     )
+  }
+
+  clear = () => {
+    this.searchInput.clear()
+    this.setState({ query : '' })
   }
 
 }
@@ -44,7 +68,11 @@ const styles = StyleSheet.create({
     alignItems : 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#cccccc',
-    flexDirection: 'row'
+    ...ifIphoneX({
+      paddingTop : 44
+    }, {
+      paddingTop : 20
+    })
   },
   searchIcon : {
     width : 15,
@@ -68,6 +96,11 @@ const styles = StyleSheet.create({
   clearButtonText : {
     fontFamily : 'HelveticaNeueRegular',
     fontSize : 18
+  },
+  results : {
+    flexDirection : 'column',
+    justifyContent : 'flex-start',
+    alignItems : 'center'
   }
 })
 

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, Image } from 'react-native'
+import { StyleSheet, Image , View} from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import { Header } from 'react-navigation'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
 import Button from './Button'
 
 export class LeftButton extends Component {
@@ -8,7 +10,6 @@ export class LeftButton extends Component {
     return (
       <Button style={ styles.leftButton }
         onPress={ () => {
-          console.log('pressed')
           this.props.onPress()
         }}
       >
@@ -21,11 +22,10 @@ export class LeftButton extends Component {
   }
 }
 
-export class SearchButton extends Component {
+export class SearchHeader extends Component {
   render() {
     return (
-      <Button
-        activeOpacity={ .8 }
+      <Button style={ styles.searchHeaderContainer }
         onPress={ this.props.onPress }
       >
         <Image style={ styles.searchIcon }
@@ -41,8 +41,22 @@ const styles = StyleSheet.create({
   leftButton : {
     marginLeft : 15
   },
+  searchHeaderContainer : {
+    borderColor : '#cccccc',
+    borderBottomWidth : 1,
+    backgroundColor : '#eeeeee',
+    flexDirection : 'column',
+    justifyContent : 'flex-end',
+    alignItems : 'center',
+    ...ifIphoneX({
+      height : 89
+    }, {
+      height : 65
+    })
+  },
   searchIcon : {
     width : 20,
-    height : 20
+    height : 20,
+    marginBottom : 10
   }
 })

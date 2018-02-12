@@ -26,7 +26,6 @@ class BottomBars extends Component {
             activeTab={ this.props.activeTab }
             onCompositionInputFocus={ this.onCompositionInputFocus }
             onCompositionInputBlur={ this.onCompositionInputBlur }
-            onCompositionInputChange={ this.onCompositionInputChange }
           />
         </KeyboardAccessoryView>
         {
@@ -60,16 +59,10 @@ class BottomBars extends Component {
 
   onCompositionInputFocus = () => {
     this.setState({ showTabBar : false })
-    console.log('focused & hiding nav bar')
   }
 
   onCompositionInputBlur = () => {
     this.setState({ showTabBar : true })
-    console.log('blurred & showing nav bar')
-  }
-
-  onCompositionInputChange = () => {
-    console.log('text')
   }
 
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { View } from 'react-native'
 import { inject, observer } from 'mobx-react'
 
 import LoadingUser from './screens/auth/LoadingUser'
@@ -12,32 +13,61 @@ import Capture from './screens/tabs/Capture'
 import Account from './screens/tabs/Account'
 
 import { StackNavigator, NavigationActions } from 'react-navigation'
-import { LeftButton, SearchButton } from './components/Header'
+import { LeftButton, SearchHeader } from './components/Header'
 
 import LogIn from './screens/auth/LogIn'
 import WithPhone from './screens/auth/WithPhone'
 import VerifyPhone from './screens/auth/VerifyPhone'
 import PickAPassword from './screens/auth/PickAPassword'
 import PickAHandle from './screens/auth/PickAHandle'
+
 import Search from './screens/search/Search'
 
 
 
 class Tabs extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      searchOpen : false
+    }
+  }
+
   render() {
     return (
-      <ScrollableTabView
-        initialPage={ 1 }
-        tabBarPosition={ 'bottom' }
-        renderTabBar={ () => <BottomBars /> }
-      >
-        <Chat />
-        <Posts />
-        <Capture />
-        <Account />
-      </ScrollableTabView>
+      <View style={{ flex : 1 }}>
+        <SearchHeader onPress={ this.openSearch } />
+        <ScrollableTabView
+          initialPage={ 1 }
+          tabBarPosition={ 'bottom' }
+          renderTabBar={ () => <BottomBars /> }
+        >
+          <Chat />
+          <Posts />
+          <Capture />
+          <Account />
+        </ScrollableTabView>
+        <Search
+          isOpen={ this.state.searchOpen }
+          close={ this.closeSearch }
+        />
+      </View>
     )
   }
+
+  openSearch = () => {
+    this.setState({
+      searchOpen : true
+    })
+  }
+
+  closeSearch = () => {
+    this.setState({
+      searchOpen : false
+    })
+  }
+
 }
 
 
@@ -75,23 +105,9 @@ const Root = StackNavigator(
   {
     tabs : {
       screen : Tabs,
-      navigationOptions : ({ navigation }) => ({
-        headerTitle : () => {
-          return (
-            <SearchButton
-              onPress={ () => navigation.navigate('search') }
-            />
-          )
-        },
-        headerStyle : HEADER_STYLE
-      })
-    },
-    search : {
-      screen : Search,
       navigationOptions : {
-        headerTitle : <SearchButton />
-      },
-      headerStyle : HEADER_STYLE
+        header : null
+      }
     }
   }, options()
 )
