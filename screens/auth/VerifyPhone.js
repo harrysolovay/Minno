@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import KeyboardCorrectlyAvoidingView from '../../components/KeyboardCorrectlyAvoidingView'
 import CodeInput from 'react-native-code-input'
-import Button from '../../components/Button'
+import Touchable from '../../components/Touchable'
 
 class VerifyPhone extends Component {
 
@@ -13,9 +13,7 @@ class VerifyPhone extends Component {
 
   render() {
     return (
-      <KeyboardCorrectlyAvoidingView
-        behavior='position'
-      >
+      <KeyboardCorrectlyAvoidingView>
         <View style={ styles.inputGroup }>
           <CodeInput
             ref={ (ref) => { this.input = ref } }
@@ -32,13 +30,13 @@ class VerifyPhone extends Component {
             codeInputStyle={ styles.input }
           />
         </View>
-        <Button style={ styles.resendCodeButton }
+        <Touchable style={ styles.resendCodeButton }
           onPress={ this.resendCode }
         >
           <Text style={ styles.resendCodeButtonText }>
             resend verification code
           </Text>
-        </Button>
+        </Touchable>
       </KeyboardCorrectlyAvoidingView>
     )
   }

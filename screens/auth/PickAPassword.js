@@ -13,9 +13,7 @@ class PickAPassword extends Component {
 
   render() {
     return (
-      <KeyboardCorrectlyAvoidingView
-        behavior='position'
-      >
+      <KeyboardCorrectlyAvoidingView>
         <AuthenticationField
           placeholder='PASSWORD'
           keyboardType='default'
@@ -39,16 +37,7 @@ class PickAPassword extends Component {
   }
 
   completeRegistration = () => {
-    this.props.navigation.dispatch(
-      NavigationActions.reset({
-        index : 0,
-        actions : [
-          NavigationActions.navigate({
-            routeName : 'root'
-          })
-        ]
-      })
-    )
+
   }
 
 }

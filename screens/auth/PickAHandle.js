@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, TextInput } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { inject, observer } from 'mobx-react'
 import KeyboardCorrectlyAvoidingView from '../../components/KeyboardCorrectlyAvoidingView'
@@ -15,9 +15,7 @@ class PickAHandle extends Component {
 
   render() {
     return (
-      <KeyboardCorrectlyAvoidingView
-        behavior='position'
-      >
+      <KeyboardCorrectlyAvoidingView>
         <AuthenticationField ref={ (ref) => { this.nameFieldRef = ref } }
           placeholder='MORTY THE MINNO'
           keyboardType='default'

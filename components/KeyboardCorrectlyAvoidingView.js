@@ -9,7 +9,10 @@ const KEYBOARD_AVOIDING_VIEW_PADDING_TOP = STATUS_BAR_HEIGHT + HEADER_HEIGHT
 class KeyboardCorrectlyAvoidingView extends Component {
   render() {
     return (
-      <KeyboardAvoidingView { ...this.props } style={[ this.props.style, styles.container ]} />
+      <KeyboardAvoidingView style={[ this.props.style, styles.container ]}
+        { ...this.props }
+        behavior='position'
+      />
     )
   }
 }

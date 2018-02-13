@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { StyleSheet, Text, View, TextInput } from 'react-native'
-import Button from './Button'
+import Touchable from './Touchable'
 import { Ionicons } from '@expo/vector-icons'
 
 export default class AuthenticationField extends Component {
@@ -27,7 +27,7 @@ export default class AuthenticationField extends Component {
           value={ this.props.value }
         />
         { this.props.hasNextButton &&
-          <Button style={ styles.nextButton }
+          <Touchable style={ styles.nextButton }
             onPress={ this.props.next }
           >
             <Ionicons
@@ -35,7 +35,7 @@ export default class AuthenticationField extends Component {
               size={ 40 }
               color='#4a90e2'
             />
-          </Button>
+          </Touchable>
         }
       </View>
     )

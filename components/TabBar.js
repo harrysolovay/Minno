@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
 import { Ionicons } from '@expo/vector-icons'
+import Touchable from './Touchable'
 
 class TabBar extends Component {
 
@@ -32,7 +33,7 @@ class TabBar extends Component {
             }
           ].map((tab, i) => {
             return (
-              <TouchableOpacity key={i} style={styles.tab}
+              <Touchable key={i} style={styles.tab}
                 activeOpacity={ .5 }
                 onPress={ () => this.goToPage(i) }
               >
@@ -41,7 +42,7 @@ class TabBar extends Component {
                   size={ tab.iconSize }
                   color={ this.props.activeTab === i ? '#4a90e2' : '#000000' }
                 />
-              </TouchableOpacity>
+              </Touchable>
             )
           })
         }

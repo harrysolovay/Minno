@@ -12,9 +12,7 @@ class WithPhone extends Component {
 
   render() {
     return (
-      <KeyboardCorrectlyAvoidingView
-        behavior='position'
-      >
+      <KeyboardCorrectlyAvoidingView>
         <AuthenticationField
           placeholder='YOUR PHONE NUMBER'
           keyboardType='phone-pad'

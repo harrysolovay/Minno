@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text } from 'react-native'
-import Button from './Button'
+import Touchable from './Touchable'
 
 class LogInButton extends Component {
   render() {
     return (
-      <Button style={[ this.props.buttonStyle, styles.button ]}
+      <Touchable style={[ this.props.buttonStyle, styles.button ]}
         onPress={ this.props.onPress }
       >
         <Text style={[ this.props.textStyle, styles.text ]}>
           { this.props.text }
         </Text>
-      </Button>
+      </Touchable>
     )
   }
 }

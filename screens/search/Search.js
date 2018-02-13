@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Modal, View, TextInput, Image, Text, TouchableOpacity } from 'react-native'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
-import Button from '../../components/Button'
+import Touchable from '../../components/Touchable'
 
 class Search extends Component {
 
@@ -29,13 +29,13 @@ class Search extends Component {
             placeholder='search'
             autoFocus
           />
-          <Button style={ styles.clearButton }
+          <Touchable style={ styles.clearButton }
             onPress={ this.state.query === '' ? this.props.close : this.clear }
           >
             <Text style={ styles.clearButtonText }>
               { this.state.query === '' ? 'close' : 'clear' }
             </Text>
-          </Button>
+          </Touchable>
         </View>
         <View style={ styles.results }>
           { this.state.query === ''

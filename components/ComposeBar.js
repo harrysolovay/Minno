@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native'
+import Touchable from './Touchable'
 
 class ComposeBar extends Component {
 
@@ -17,14 +18,13 @@ class ComposeBar extends Component {
           onChange={ this.props.onCompositionInputChange }
           onBlur={ this.props.onCompositionInputBlur }
         />
-        <TouchableOpacity style={ styles.button }
-          activeOpacity={ .5 }
+        <Touchable style={ styles.button }
           onPress={ () => { console.log('sent or submitted') } }
         >
           <Text style={ styles.buttonText }>
             { this.props.activeTab == 0 ? 'send' : 'post' }
           </Text>
-        </TouchableOpacity>
+        </Touchable>
       </View>
     )
   }

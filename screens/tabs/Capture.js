@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { Camera, Permissions } from 'expo'
-import Button from '../../components/Button'
+import Touchable from '../../components/Touchable'
 import { Ionicons } from '@expo/vector-icons'
 
 class Capture extends Component {
@@ -24,7 +24,7 @@ class Capture extends Component {
           >
             <View style={ styles.buttons }>
 
-              <Button style={ styles.toggleFlashButton }
+              <Touchable style={ styles.toggleFlashButton }
                 onPress={ this.toggleFlash }
               >
                 { this.state.flashMode === Camera.Constants.FlashMode.off
@@ -39,13 +39,13 @@ class Capture extends Component {
                       color='#fff'
                     />
                 }
-              </Button>
+              </Touchable>
 
-              <Button style={ styles.captureButton }
+              <Touchable style={ styles.captureButton }
                 onPress={ this.takePicture }
               />
 
-              <Button style={ styles.flipButton }
+              <Touchable style={ styles.flipButton }
                 onPress={ this.flip }
               >
                 <Ionicons
@@ -53,7 +53,7 @@ class Capture extends Component {
                   size={ 40 }
                   color='#fff'
                 />
-              </Button>
+              </Touchable>
 
             </View>
           </Camera>
@@ -73,7 +73,6 @@ class Capture extends Component {
   takePicture = async() => {
     if(this.camera) {
       let pic = await this.camera.takePictureAsync({ base64 : true })
-      console.log(pic)
     }
   }
 

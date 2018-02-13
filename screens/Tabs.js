@@ -67,23 +67,21 @@ class Tabs extends Component {
   }
 
   calculateSearchHeaderOffset(scrollX) {
-    let offset
-    if(scrollX <= 1)
-      offset = 0
-    if(scrollX > 1 && scrollX < 2)
-      offset = -(HEADER_HEIGHT - ( HEADER_HEIGHT * (2 - scrollX)))
-    if(scrollX >= 2)
-      offset = -(HEADER_HEIGHT - ( HEADER_HEIGHT * (scrollX - 2)))
-    return offset
+    if(scrollX <= 1 || scrollX > 3)
+      return 0
+    if(scrollX > 1 && scrollX <= 2)
+      return -(HEADER_HEIGHT - ( HEADER_HEIGHT * (2 - scrollX)))
+    if(scrollX > 2 && scrollX <= 3)
+      return -(HEADER_HEIGHT - ( HEADER_HEIGHT * (scrollX - 2)))
   }
 
   calculateCompositionBarOffset(scrollX) {
-    let offset
     if(scrollX <= 1)
-      offset = 0
-    if(scrollX > 1)
-      offset = -(46 - ( 46 * (2 - scrollX)))
-    return offset
+      return 0
+    if(scrollX > 1 && scrollX <= 2)
+      return -(46 - ( 46 * (2 - scrollX)))
+    if(scrollX > 2)
+      return -46
   }
 
   openSearch = () => {
